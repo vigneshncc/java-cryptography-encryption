@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.gvignesh.jcencryption</groupId>
+  <artifactId>jca-encryption</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>JCEncryption</name>
+  <description>JCEKS stands for Java Cryptography Extension KeyStore and it is an alternative keystore format for the Java platform. Storing keys in a KeyStore can be a measure to prevent your encryption keys from being exposed. Java KeyStores securely contain individual certificates and keys that can be referenced by an alias for use in a Java program. Java KeyStores are often created using the "keytool" provided with the Java JDK.
+
+NOTE: It is strongly recommended to create a complex passcode for KeyStores to keep the contents secure. The KeyStore is a file that is considered to be public, but it is advisable to not give easy access to the file.</description>
+
+<properties>
+  	<!-- Java Version -->
+  	<javac.version>1.7</javac.version>
+  	
+  	<!-- jar dependencies versions -->
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.6.1</slf4j.version>
+    
+    <!-- Spring Version -->
+    <spring.version>3.2.2.RELEASE</spring.version>
+    
+    <!-- LOG4J -->
+    <log4j.root.level>DEBUG</log4j.root.level>
+
+</properties>
+    
+    <dependencies>
+       <!-- Google Guava -->    	
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
+        </dependency>
+        
+        <!-- Logging dependencies -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>${log4j.version}</version>
+         </dependency>
+         
+         <!-- Spring framework Core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>onejar-maven-plugin.googlecode.com</id>
+			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+<build>
+	<finalName>jca-encryption</finalName>
+	<plugins>
+		<plugin>
+			 <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-jar-plugin</artifactId>
+           <version>2.3.2</version>
+           <configuration>
+               <archive>
+                   <manifest>
+                   	    <addClasspath>true</addClasspath>
+                       <mainClass>org.gvignesh.loader.BootLoader</mainClass>
+                   </manifest>
+               </archive>
+           </configuration>
+		</plugin>
+		
+		<plugin>
+           <groupId>org.dstovall</groupId>
+           <artifactId>onejar-maven-plugin</artifactId>
+           <version>1.4.4</version>
+           <executions>
+               <execution>
+                   <configuration>
+                       <onejarVersion>0.97</onejarVersion>
+                       <attachToBuild>true</attachToBuild>
+                       <classifier>onejar</classifier>
+                   </configuration>
+                   <goals>
+                       <goal>one-jar</goal>
+                   </goals>
+               </execution>
+           </executions>
+       </plugin>
+       
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <configuration>
+               <source>${javac.version}</source>
+               <target>${javac.version}</target>
+           </configuration>
+       </plugin>
+	</plugins>
+</build>
+	
+</project>
